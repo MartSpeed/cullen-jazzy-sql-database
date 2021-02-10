@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const pg = require('pg');
 
 const app = express();
 const PORT = 5000;
@@ -9,6 +10,17 @@ app.use(express.static('server/public'));
 
 app.listen(PORT, () => {
   console.log('listening on port', PORT);
+});
+
+const pool = new pg.Pool({
+  // this option is required
+  database: 'artists', 'song',
+
+  // these options are not required but you may see them
+  // host = 'localhost'
+  // port = 5432
+  host: 'localhost',
+  port: 5432
 });
 
 // TODO - Replace static content with a database tables
